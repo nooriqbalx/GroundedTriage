@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: securicopilot
+  labels:
+    app: securicopilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: securicopilot
+  template:
+    metadata:
+      labels:
+        app: securicopilot
+    spec:
+      containers:
+        - name: securicopilot
+          image: securicopilot:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: GROQ_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: securicopilot-secrets
+                  key: groq-api-key
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10

@@ -1,0 +1,362 @@
+[
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "static_evidence",
+    "true_family": "ConnectWise",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "static_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "static_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "UNKNOWN",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "static_evidence",
+    "true_family": "NetSupport",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "static_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "static_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "static_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "static_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "static_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Gozi",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "static_evidence",
+    "true_family": "NetSupport",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "static_evidence",
+    "true_family": "ConnectWise",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "static_evidence",
+    "true_family": "NetSupport",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "static_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "static_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "static_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "dynamic_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "dynamic_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "BazarLoader",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "dynamic_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Unknown",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "dynamic_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "dynamic_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Emotet",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "dynamic_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "dynamic_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "dynamic_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Locky",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "dynamic_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Telegram RAT",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "dynamic_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Locky",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "dynamic_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Ding Mod Menu",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "dynamic_evidence",
+    "true_family": "CoinMiner",
+    "predicted_family": "XMRig",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "dynamic_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "BazarLoader",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "dynamic_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "Generic Dropper",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "dynamic_evidence",
+    "true_family": "njrat",
+    "predicted_family": "QakBot",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "combined_evidence",
+    "true_family": "njrat",
+    "predicted_family": "BazarLoader",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "combined_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "Unknown (insufficient evidence to assign a specific family)",
+    "marked_correct": "False",
+    "verdict": "GROUNDED"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "combined_evidence",
+    "true_family": "CoinMiner",
+    "predicted_family": "BazarLoader",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "combined_evidence",
+    "true_family": "WannaCry",
+    "predicted_family": "PlugX",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "condition": "combined_evidence",
+    "true_family": "ConnectWise",
+    "predicted_family": "ScreenConnect (ConnectWise Control)",
+    "marked_correct": "True",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "combined_evidence",
+    "true_family": "CoinMiner",
+    "predicted_family": "Cobalt Strike",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "combined_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "REvil (Sodinokibi)",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "combined_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "Criptor",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "combined_evidence",
+    "true_family": "NanoCore",
+    "predicted_family": "Lumin",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "condition": "combined_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Ding-Boot",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "combined_evidence",
+    "true_family": "njrat",
+    "predicted_family": "<name>",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "combined_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Emotet",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "combined_evidence",
+    "true_family": "njrat",
+    "predicted_family": "Generic .NET Loader",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "combined_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "InfoStealer",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  },
+  {
+    "model": "qwen/qwen3.6-27b",
+    "condition": "combined_evidence",
+    "true_family": "Vidar",
+    "predicted_family": "Ding-BootV2 (Game Cheat/Mod Menu)",
+    "marked_correct": "False",
+    "verdict": "PARTIAL"
+  }
+]
