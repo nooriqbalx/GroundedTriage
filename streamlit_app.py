@@ -271,15 +271,15 @@ st.markdown("""
 st.markdown("""
 <div class="abstract-box">
 <span class="abstract-label">Abstract</span>
-We evaluate three large language models (GPT-OSS-20B, GPT-OSS-120B, Qwen3.6-27B) on malware family
+I evaluate three large language models (GPT-OSS-20B, GPT-OSS-120B, Qwen3.6-27B) on malware family
 classification across 56 real-world samples, varying the evidence provided from static file metadata
 to full dynamic behavioral analysis. Classification accuracy remains statistically flat across this
-progression (&chi;&sup2; not significant), while models abstain far less often as evidence richness
-increases. A stratified human review of 45 model justifications finds that this growing confidence is
-largely unearned: the proportion of justifications actually grounded in the evidence shown collapses
-from 73.3% to 6.7% (Fisher's exact test, p &lt; 0.001). We interpret this as evidence that richer
-context does not improve reasoning in this setting -- it increases the surface area for models to
-construct plausible-sounding but unsupported narratives.
+progression (&chi;&sup2; not significant, p = 0.49), while models abstain far less often as evidence
+richness increases (59.5% to 12.5%, p &lt; 0.0001). A stratified human review of 45 model justifications
+finds that this growing confidence is largely unearned: the proportion of justifications actually
+grounded in the evidence shown collapses from 73.3% to 6.7% (Fisher's exact test, p &lt; 0.001). I
+interpret this as evidence that richer context does not improve reasoning in this setting; it increases
+the surface area for models to construct plausible-sounding but unsupported narratives.
 </div>
 """, unsafe_allow_html=True)
 
