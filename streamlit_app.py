@@ -1,5 +1,5 @@
 """
-SecuriCopilot -- Polished Streamlit demo
+SecuriCopilot -- Academic-styled Streamlit demo
 """
 
 import os
@@ -33,8 +33,11 @@ IP addresses contacted: 149.154.167.99
 Behavioral signatures: process injection, token impersonation, registry modification, anti-debugging checks
 MITRE ATT&CK techniques: T1055 (Process Injection), T1134.001 (Token Impersonation), T1112 (Modify Registry)"""
 
-CONFIDENCE_COLORS = {"high": "#E63946", "medium": "#F4A261", "low": "#2A9D8F"}
-CONFIDENCE_LABELS = {"high": "⚠️ HIGH", "medium": "◐ MEDIUM", "low": "○ LOW"}
+CONFIDENCE_STYLE = {
+    "high": {"border": "#8B3A3A", "text": "#D4A5A5"},
+    "medium": {"border": "#8B7A3A", "text": "#D4C4A5"},
+    "low": {"border": "#3A5A6B", "text": "#A5C4D4"},
+}
 
 
 def extract_final_answer(raw_text):
@@ -59,104 +62,169 @@ def analyze(evidence_text, model_choice):
     return extract_final_answer(raw)
 
 
-st.set_page_config(page_title="SecuriCopilot", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="SecuriCopilot -- Research Demo", page_icon=None, layout="wide")
 
-# --- Custom CSS ---
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.6rem;
-        font-weight: 800;
-        background: linear-gradient(90deg, #E63946, #F4A261);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0;
+    @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+    html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
+
+    .paper-header {
+        font-family: 'Source Serif 4', serif;
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #E8E8E8;
+        margin-bottom: 0.2rem;
+        letter-spacing: -0.01em;
     }
-    .subtitle {
+    .paper-subtitle {
+        font-family: 'Source Serif 4', serif;
+        font-style: italic;
         color: #9CA3AF;
         font-size: 1.05rem;
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
+        margin-bottom: 1.8rem;
+        border-bottom: 1px solid #2D3138;
+        padding-bottom: 1.2rem;
     }
-    .finding-badge {
-        background-color: #1C1F26;
-        border-left: 4px solid #E63946;
-        padding: 0.9rem 1.2rem;
-        border-radius: 6px;
-        margin-bottom: 1.5rem;
+    .abstract-box {
+        background-color: #14161A;
+        border: 1px solid #2D3138;
+        border-left: 3px solid #6B7280;
+        padding: 1.3rem 1.6rem;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: #C4C8CE;
+    }
+    .abstract-label {
+        font-family: 'Source Serif 4', serif;
+        font-weight: 700;
+        color: #E8E8E8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.75rem;
+        margin-bottom: 0.6rem;
+        display: block;
+    }
+    .section-label {
+        font-family: 'Source Serif 4', serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #E8E8E8;
+        border-bottom: 1px solid #2D3138;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     .result-card {
-        background-color: #1C1F26;
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-top: 1rem;
+        background-color: #14161A;
         border: 1px solid #2D3138;
+        border-radius: 4px;
+        padding: 1.6rem;
+    }
+    .family-name {
+        font-family: 'Source Serif 4', serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #E8E8E8;
+        margin: 0;
+    }
+    .confidence-tag {
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 2px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+    .justification-text {
+        color: #A8ADB4;
+        line-height: 1.7;
+        font-size: 0.93rem;
+        margin-top: 1rem;
+        border-top: 1px solid #2D3138;
+        padding-top: 1rem;
+    }
+    .caveat-box {
+        background-color: #14161A;
+        border: 1px solid #2D3138;
+        border-radius: 4px;
+        padding: 0.9rem 1.2rem;
+        font-size: 0.85rem;
+        color: #8B8F96;
+        margin-top: 1rem;
+        font-style: italic;
     }
     .stButton>button {
-        background: linear-gradient(90deg, #E63946, #D62839);
-        color: white;
-        font-weight: 600;
-        border: none;
-        border-radius: 6px;
-        padding: 0.6rem 2rem;
+        background-color: #2D3138;
+        color: #E8E8E8;
+        font-weight: 500;
+        border: 1px solid #4A4F58;
+        border-radius: 4px;
     }
-    .skepticism-note {
-        background-color: #2D2418;
-        border-left: 4px solid #F4A261;
-        padding: 0.8rem 1.1rem;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        color: #D4C4A8;
-        margin-top: 1rem;
+    .stButton>button:hover {
+        background-color: #3A3F48;
+        border: 1px solid #6B7280;
+    }
+    .footer-text {
+        color: #6B7280;
+        font-size: 0.82rem;
+        border-top: 1px solid #2D3138;
+        padding-top: 1rem;
+        margin-top: 2rem;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# --- Header ---
-st.markdown('<p class="main-header">🛡️ SecuriCopilot</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">An LLM-based malware triage assistant — and a live demonstration of why '
-            'you shouldn\'t trust it blindly.</p>', unsafe_allow_html=True)
+st.markdown('<p class="paper-header">SecuriCopilot</p>', unsafe_allow_html=True)
+st.markdown('<p class="paper-subtitle">An empirical demonstration of evidence-dependent hallucination '
+            'in LLM-based malware triage</p>', unsafe_allow_html=True)
 
 st.markdown(f"""
-<div class="finding-badge">
-<b>Research finding:</b> richer evidence increases model <i>confidence</i> without improving <i>accuracy</i>.
-Human-verified grounding of model justifications collapses from <b>73.3%</b> (sparse evidence) to
-<b>6.7%</b> (rich evidence) as more data is provided — models get more confident, not more correct.
+<div class="abstract-box">
+<span class="abstract-label">Summary of Findings</span>
+This interactive demo accompanies an evaluation of three large language models across 56 real-world
+malware samples. The central finding: classification accuracy remains statistically flat as evidence
+richness increases (2.4% -> 4.8% -> 4.2%, &chi;&sup2; not significant, p = 0.49), while human-verified
+grounding of model-generated justifications collapses from 73.3% to 6.7% over the same conditions
+(Fisher's exact test, p &lt; 0.001). Models do not become more accurate with more evidence -- they
+become more confidently unsupported.
 <br><br>
-📊 <a href="{GITHUB_URL}" target="_blank">Full project, dataset, code, and figures on GitHub →</a>
+<a href="{GITHUB_URL}" target="_blank" style="color:#9CA3AF;">-> Full methodology, dataset, and source code (GitHub)</a>
 </div>
 """, unsafe_allow_html=True)
 
 col_input, col_result = st.columns([1, 1], gap="large")
 
 with col_input:
-    st.subheader("Input Evidence")
+    st.markdown('<p class="section-label">Input Evidence</p>', unsafe_allow_html=True)
     evidence_input = st.text_area(
-        "Paste static/dynamic analysis output",
-        value=EXAMPLE_EVIDENCE, height=240, label_visibility="collapsed",
+        "Static/dynamic analysis output",
+        value=EXAMPLE_EVIDENCE, height=230, label_visibility="collapsed",
     )
     model_choice = st.selectbox(
-        "Model",
+        "Model under evaluation",
         ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b"],
-        help="gpt-oss-120b was the most accurate and best-calibrated model in our evaluation.",
+        help="gpt-oss-120b was the most accurate and best-calibrated model in the full evaluation.",
     )
-    analyze_clicked = st.button("🔍 Analyze Evidence", type="primary", use_container_width=True)
+    analyze_clicked = st.button("Run Triage Analysis", type="primary", use_container_width=True)
 
 with col_result:
-    st.subheader("Triage Result")
+    st.markdown('<p class="section-label">Model Output</p>', unsafe_allow_html=True)
 
     if analyze_clicked:
         if not GROQ_KEY:
-            st.error("Server not configured (missing API key).")
+            st.error("Server not configured.")
         elif not evidence_input.strip():
-            st.warning("Please paste some evidence first.")
+            st.warning("Provide evidence to analyze.")
         else:
-            with st.spinner("Analyzing..."):
+            with st.spinner("Querying model..."):
                 try:
                     final = analyze(evidence_input, model_choice)
                 except Exception as e:
-                    st.error(f"Error calling model: {e}")
+                    st.error(f"Request failed: {e}")
                     final = None
 
             if final:
@@ -168,36 +236,38 @@ with col_result:
                 confidence = confidence_match.group(1).lower() if confidence_match else "low"
                 justification = justification_match.group(1).strip() if justification_match else final
 
-                badge_color = CONFIDENCE_COLORS.get(confidence, "#9CA3AF")
-                badge_label = CONFIDENCE_LABELS.get(confidence, confidence.upper())
+                style = CONFIDENCE_STYLE.get(confidence, CONFIDENCE_STYLE["low"])
 
                 st.markdown(f"""
                 <div class="result-card">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <h3 style="margin:0;">{family}</h3>
-                        <span style="background-color:{badge_color}; color:white; padding:4px 12px;
-                                     border-radius:20px; font-size:0.85rem; font-weight:600;">
-                            {badge_label}
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <p class="family-name">{family}</p>
+                        <span class="confidence-tag" style="border-color:{style['border']}; color:{style['text']};">
+                            {confidence} confidence
                         </span>
                     </div>
-                    <p style="color:#B0B5BD; margin-top:1rem; line-height:1.6;">{justification}</p>
+                    <p class="justification-text">{justification}</p>
                 </div>
-                <div class="skepticism-note">
-                    🧐 <b>Per our findings:</b> don't take this justification at face value —
-                    check whether each claim above actually traces back to the evidence you pasted,
-                    or whether the model is confidently narrating something it can't actually support.
+                <div class="caveat-box">
+                    Note: per this project's findings, verify each claim above against the evidence
+                    shown. Justifications frequently cite real evidence in support of an unsupported
+                    or fabricated attribution -- treat this output as a hypothesis, not a verdict.
                 </div>
                 """, unsafe_allow_html=True)
     else:
-        st.info("← Paste evidence and click Analyze to see a live triage result.")
+        st.markdown('<p style="color:#6B7280; font-style:italic;">Awaiting input.</p>', unsafe_allow_html=True)
 
-st.divider()
-st.subheader("Why grounding collapses as evidence increases")
-st.caption("Human-reviewed grounding rate across 45 stratified sample responses (see full methodology on GitHub)")
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown('<p class="section-label">Empirical Basis</p>', unsafe_allow_html=True)
+st.caption("Human-reviewed grounding rate across a stratified sample of 45 model responses. "
+           "Full methodology available in the project repository.")
 try:
     st.image(GROUNDING_CHART_URL, use_container_width=True)
 except Exception:
-    st.caption("(Chart loads once figures are pushed to the GitHub repo)")
+    st.caption("(Figure will render once pushed to the repository.)")
 
-st.divider()
-st.caption("Built by Noor-ul-ain Iqbal · Beaconhouse National University")
+st.markdown(
+    '<p class="footer-text">Iqbal, N. (2026). <i>SecuriCopilot: Evaluating Evidence-Dependent '
+    'Hallucination in LLM-Based Malware Triage.</i> Beaconhouse National University.</p>',
+    unsafe_allow_html=True,
+)
