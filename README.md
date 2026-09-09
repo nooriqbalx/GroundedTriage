@@ -63,3 +63,21 @@ curl -X POST http://localhost:8000/analyze \
 ---
 
 ## Repository Structure
+
+```
+GroundedTriage/
+├── app/                      # FastAPI service: evidence ingestion, model calls, scoring logic
+├── data/                     # Dataset: 56 malware samples, ground truth, evidence bundles
+├── figures/                  # Generated plots (accuracy, abstention, grounding, confusion matrix)
+├── scripts/                  # Analysis and figure-generation scripts
+├── k8s/                      # Kubernetes manifests (written, not yet deployed)
+├── .streamlit/               # Streamlit app theme/config
+├── .github/workflows/        # CI pipeline
+├── .devcontainer/            # Dev container config for reproducible setup
+├── streamlit_app.py          # Entry point for the live demo
+├── Dockerfile                # Container build for the FastAPI service
+├── requirements.txt          # Minimal deps (Streamlit demo)
+├── requirements-docker.txt   # Full deps (Docker/API)
+├── REPORT.md                 # Full write-up: methodology, results, limitations, ethics
+└── README.md                 # This file
+```
