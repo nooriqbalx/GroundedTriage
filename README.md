@@ -43,7 +43,7 @@ More figures, including per-family accuracy and the row-normalized outcome confu
 - **Grounding check:** a stratified sample of 45 responses (5 per model × condition cell) was manually reviewed against the underlying evidence and labeled GROUNDED / PARTIAL / FABRICATED, using a strict rule: any unsupported family-specific attribution — even alongside otherwise-accurate evidence description — is not GROUNDED.
 - **Statistics:** chi-square tests of independence with Cramér's V effect size on the full 504-response dataset; Fisher's exact test as a robustness check on the smaller grounding sample.
 
-Full methodology, limitations, and discussion: see [`REPORT.md`](REPORT.md) *(coming soon)*.
+Full methodology, limitations, and discussion: see [`REPORT.md`](REPORT.md).
 
 ---
 
