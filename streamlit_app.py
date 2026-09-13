@@ -16,6 +16,7 @@ GITHUB_REPO = "GroundedTriage"
 GITHUB_URL = f"https://github.com/{GITHUB_USER}/{GITHUB_REPO}"
 GROUNDING_CHART_URL = f"https://raw.githubusercontent.com/{GITHUB_USER}/{GITHUB_REPO}/main/figures/fig3_grounding.png"
 ACCURACY_CHART_URL = f"https://raw.githubusercontent.com/{GITHUB_USER}/{GITHUB_REPO}/main/figures/fig1_accuracy.png"
+TAXONOMY_CHART_URL = f"https://raw.githubusercontent.com/{GITHUB_USER}/{GITHUB_REPO}/main/figures/fig6_taxonomy.png"
 
 PROMPT_TEMPLATE = """You are a malware analyst assistant. Based ONLY on the evidence below, provide your analysis in EXACTLY this format:
 
@@ -110,9 +111,10 @@ st.markdown("""
     }
     .link-pill:hover { border-color: #6B7280; background-color: #1A1D22; }
 
-    .stat-row { display: flex; gap: 1.2rem; margin-bottom: 2rem; }
+    .stat-row { display: flex; gap: 1.2rem; margin-bottom: 2rem; flex-wrap: wrap; }
     .stat-card {
         flex: 1;
+        min-width: 200px;
         background-color: #14161A;
         border: 1px solid #2D3138;
         border-top: 2px solid #6B7280;
@@ -248,6 +250,7 @@ st.markdown(f"""
     <a href="{GITHUB_URL}" target="_blank" class="link-pill">Code</a>
     <a href="{GITHUB_URL}/tree/main/data" target="_blank" class="link-pill">Dataset (N=56)</a>
     <a href="{GITHUB_URL}/tree/main/figures" target="_blank" class="link-pill">Figures</a>
+    <a href="{GITHUB_URL}/blob/main/REPORT.md" target="_blank" class="link-pill">Full Report</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -265,6 +268,10 @@ st.markdown("""
         <div class="stat-value">73.3% &rarr; 6.7%</div>
         <div class="stat-label">Justification grounding rate<br>(human-verified, p &lt; 0.001)</div>
     </div>
+    <div class="stat-card">
+        <div class="stat-value">0 / 11</div>
+        <div class="stat-label">Misattributions independently supported<br>(OSINT-validated, 95% CI [0%, 25.9%])</div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -277,9 +284,14 @@ to full dynamic behavioral analysis. Classification accuracy remains statistical
 progression (&chi;&sup2; not significant, p = 0.49), while models abstain far less often as evidence
 richness increases (59.5% to 12.5%, p &lt; 0.0001). A stratified human review of 45 model justifications
 finds that this growing confidence is largely unearned: the proportion of justifications actually
-grounded in the evidence shown collapses from 73.3% to 6.7% (Fisher's exact test, p &lt; 0.001). I
-interpret this as evidence that richer context does not improve reasoning in this setting; it increases
-the surface area for models to construct plausible-sounding but unsupported narratives.
+grounded in the evidence shown collapses from 73.3% to 6.7% (Fisher's exact test, p &lt; 0.001). A
+descriptive taxonomy of these failures shows the pattern shifting from crude static-artifact
+misattribution toward more sophisticated technique-fingerprinting and compound narratives as evidence
+richens, and an independent validation against public threat-intelligence sources finds zero external
+support for any of 11 checkable misattribution claims, including two cases naming a malware family that
+does not appear to exist. I interpret this as evidence that richer context does not improve reasoning
+in this setting; it increases the surface area for models to construct plausible-sounding but
+unsupported narratives.
 </div>
 """, unsafe_allow_html=True)
 
@@ -340,8 +352,11 @@ with col_result:
                 </div>
                 <div class="caveat-box">
                     Note -- per this project's findings, verify each claim above against the evidence
-                    shown. Justifications frequently cite real evidence in support of an unsupported
-                    or fabricated attribution; treat this output as a hypothesis, not a verdict.
+                    shown, and independently against external sources if a specific family is named.
+                    Justifications frequently cite real evidence in support of an unsupported or
+                    fabricated attribution, and in some cases the named family may not correspond to
+                    any documented malware family at all; treat this output as a hypothesis, not a
+                    verdict.
                 </div>
                 """, unsafe_allow_html=True)
     else:
@@ -351,7 +366,7 @@ with col_result:
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown('<p class="section-label">Empirical Basis</p>', unsafe_allow_html=True)
 
-tab1, tab2 = st.tabs(["Grounding Collapse", "Accuracy by Condition"])
+tab1, tab2, tab3 = st.tabs(["Grounding Collapse", "Accuracy by Condition", "Failure-Mode Taxonomy"])
 with tab1:
     st.caption("Human-reviewed grounding rate across a stratified sample of 45 model responses.")
     try:
@@ -362,6 +377,14 @@ with tab2:
     st.caption("Classification accuracy across all 504 evaluated responses.")
     try:
         st.image(ACCURACY_CHART_URL, use_container_width=True)
+    except Exception:
+        st.caption("(Figure will render once pushed to the repository.)")
+with tab3:
+    st.caption("Descriptive failure-mode category counts by evidence condition (N = 45). Generic-technique-"
+               "as-fingerprint and compound narrative construction are both absent under static evidence and "
+               "increase once dynamic evidence is introduced.")
+    try:
+        st.image(TAXONOMY_CHART_URL, use_container_width=True)
     except Exception:
         st.caption("(Figure will render once pushed to the repository.)")
 
