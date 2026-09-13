@@ -16,6 +16,8 @@ Does giving a large language model *more* evidence make it better at malware tri
 
 Richer evidence doesn't improve reasoning here. It gives the model more surface area to construct a plausible-sounding, unsupported narrative.
 
+A descriptive taxonomy of these justification failures shows *how* this narrative-building shifts as evidence richens — from crude static-artifact misattribution toward more sophisticated technique-fingerprinting and multi-observation "compound narratives." An independent validation of the resulting misattribution claims against public threat-intelligence sources (MalwareBazaar, manual OSINT checks) found **zero external support** for any of 11 checkable claims — including two cases where the model appears to have named a malware family that does not exist. Full results in [`REPORT.md`](https://github.com/nooriqbalx/GroundedTriage/blob/main/REPORT.md) Sections 5.4–5.5.
+
 **[Try the live demo →](https://groundedtriage.streamlit.app/)**
 
 ---
@@ -30,6 +32,10 @@ Richer evidence doesn't improve reasoning here. It gives the model more surface 
 
 *Accuracy stays flat while abstention drops — models commit to more answers without becoming more correct (N=504).*
 
+![Failure-mode taxonomy by evidence condition](figures/fig6_taxonomy.png)
+
+*Failure-mode composition shifts as evidence richens: generic-technique-fingerprinting and compound narrative construction both emerge only once behavioral evidence is introduced (N=45).*
+
 More figures, including per-family accuracy and the row-normalized outcome confusion matrix, are in [`figures/`](figures/).
 
 ---
@@ -41,9 +47,11 @@ More figures, including per-family accuracy and the row-normalized outcome confu
 - **Models:** three open-weight models via the Groq API — `openai/gpt-oss-20b`, `openai/gpt-oss-120b`, `qwen/qwen3.6-27b`.
 - **Evaluation:** 56 samples × 3 conditions × 3 models = 504 total responses, each scored against ground truth for family-classification accuracy and abstention.
 - **Grounding check:** a stratified sample of 45 responses (5 per model × condition cell) was manually reviewed against the underlying evidence and labeled GROUNDED / PARTIAL / FABRICATED, using a strict rule: any unsupported family-specific attribution — even alongside otherwise-accurate evidence description — is not GROUNDED.
-- **Statistics:** chi-square tests of independence with Cramér's V effect size on the full 504-response dataset; Fisher's exact test as a robustness check on the smaller grounding sample.
+- **Failure-mode taxonomy:** the 45 reviewed justifications were further categorized into descriptive failure modes (signature/hash misattribution, generic-technique-as-fingerprint, compound narrative construction), reported descriptively per a power analysis showing the sample size cannot support a formally tested comparison.
+- **Independent validation:** a subset of misattribution claims citing a specific checkable artifact (import hash or network domain) was validated against MalwareBazaar's public database and manual OSINT checks, independent of the author's own grounding judgment.
+- **Statistics:** chi-square tests of independence with Cramér's V effect size on the full 504-response dataset; Fisher's exact test as a robustness check on the smaller grounding sample; Wilson confidence intervals on all proportion estimates.
 
-Full methodology, limitations, and discussion: see [`REPORT.md`](REPORT.md).
+Full methodology, limitations, and discussion: see [`REPORT.md`](https://github.com/nooriqbalx/GroundedTriage/blob/main/REPORT.md).
 
 ---
 
@@ -67,9 +75,15 @@ curl -X POST http://localhost:8000/analyze \
 ```
 GroundedTriage/
 ├── app/                      # FastAPI service: evidence ingestion, model calls, scoring logic
-├── data/                     # Dataset: 56 malware samples, ground truth, evidence bundles
-├── figures/                  # Generated plots (accuracy, abstention, grounding, confusion matrix)
-├── scripts/                  # Analysis and figure-generation scripts
+├── data/                     # Dataset: 56 malware samples, ground truth, evidence bundles,
+│                              #   grounding review, failure-mode taxonomy, OSINT validation results
+├── figures/                  # Generated plots (accuracy, abstention, grounding, confusion matrix,
+│                              #   failure-mode taxonomy)
+├── scripts/
+│   ├── pipeline/              # Dataset construction and evaluation pipeline
+│   ├── analysis/              # Extension analysis: power analysis, taxonomy coding, OSINT
+│   │                          #   validation, statistical consolidation, figure generation
+│   └── debug/                 # Debugging utilities
 ├── k8s/                      # Kubernetes manifests (written, not yet deployed)
 ├── .streamlit/               # Streamlit app theme/config
 ├── .github/workflows/        # CI pipeline
