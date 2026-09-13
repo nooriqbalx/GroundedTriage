@@ -1,0 +1,306 @@
+{
+  "0_2a0e94343f24_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "1_c1a55cc34cd1_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "2_9b6ca6bd303f_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "3_2a08a419280f_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "4_2e36529bd4cb_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "5_53beca1b6d84_static_evidence": {
+    "category": "signature_misattribution",
+    "note": "imphash cited as sole basis for family attribution, no behavioral confirmation",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "condition": "static_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "6_2d711a965f7f_static_evidence": {
+    "category": "signature_misattribution",
+    "note": "same imphash pattern as item 6, model explicitly states attribution is based solely on imphash match",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "condition": "static_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "7_46e9d345a244_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "8_c1a55cc34cd1_static_evidence": {
+    "category": "signature_misattribution",
+    "note": "imphash and file format cited as basis for Gozi attribution, model states no additional identifying strings/behaviors present",
+    "true_family": "njrat",
+    "predicted_family": "Gozi",
+    "condition": "static_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "9_e30b63d095db_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "10_b2b7a4513002_static_evidence": {
+    "category": "other",
+    "note": "edge case: model correctly abstains (predicted Unknown), but still speculates \"stolen signing certificate for evasion\" unsupported by evidence \u2014 doesn't fit misattribution/technique/compound since no specific family was named",
+    "true_family": "ConnectWise",
+    "predicted_family": "Unknown",
+    "condition": "static_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "11_e30b63d095db_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "12_2e36529bd4cb_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "13_029330cc5fcc_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "14_e163ebf5bb0e_static_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "15_7e743429ee5e_dynamic_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "16_029330cc5fcc_dynamic_evidence": {
+    "category": "compound_narrative",
+    "note": "random filename + generic behaviors (process injection, token theft, registry manipulation) + one C2 domain each individually weak, strung together into confident BazarLoader attribution",
+    "true_family": "Vidar",
+    "predicted_family": "BazarLoader",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "17_9b6ca6bd303f_dynamic_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "18_a81b049085bc_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "justification explicitly labels generic ATT&CK techniques (process injection, token theft, service/registry changes, anti-analysis) as \"hallmark Cobalt Strike beacon behaviors\" despite these being common across many families",
+    "true_family": "Vidar",
+    "predicted_family": "Cobalt Strike",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "19_e4210cc04fa6_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "multiple generic delivery/obfuscation techniques (VBScript, PowerShell, scheduled tasks, AES/base64/reflection loading) framed as matching Emotet patterns, despite model's own admission that similar techniques appear in other families",
+    "true_family": "njrat",
+    "predicted_family": "Emotet",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "20_c1a55cc34cd1_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "generic persistence/evasion techniques (registry run keys, COM hijacking, Defender exclusion changes) labeled \"hallmark Cobalt Strike beacon behaviors\" despite being common across many families",
+    "true_family": "njrat",
+    "predicted_family": "Cobalt Strike",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "21_2e36529bd4cb_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "process launch technique, token impersonation, service modification, encryption, anti-debug, and timestomp all generic evasion/persistence techniques labeled as matching \"typical Cobalt Strike beacon\" tactics despite being common across many malware families",
+    "true_family": "WannaCry",
+    "predicted_family": "Cobalt Strike",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "22_1405fc0c8359_dynamic_evidence": {
+    "category": "compound_narrative",
+    "note": "rundll32 execution + generic encryption + service persistence individually common techniques combined into confident Locky attribution; model's own \"medium confidence\" and admission other rundll32-based ransomware could match reflects the weak compound basis",
+    "true_family": "WannaCry",
+    "predicted_family": "Locky",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "23_ef88d67603ef_dynamic_evidence": {
+    "category": "compound_narrative",
+    "note": "Telegram C2 domain + generic RAT behaviors (process injection, registry mod, service creation, token theft) combined into \"Telegram RAT\" attribution; model itself notes no definitive signature or unique identifier present",
+    "true_family": "Vidar",
+    "predicted_family": "Telegram RAT",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "24_ed2a78cca645_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "generic execution technique (rundll32 loading .exe.dll) and common ransomware behaviors (encryption, registry/service persistence) labeled \"hallmark of Locky\" and \"match Locky's known capabilities\" despite being common across ransomware families",
+    "true_family": "WannaCry",
+    "predicted_family": "Locky",
+    "condition": "dynamic_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "25_ea21ddf3a08f_dynamic_evidence": {
+    "category": "signature_misattribution",
+    "note": "filename itself explicitly indicates \"modmenu\" - a case where the model actually has a legitimately strong static clue (unlike other imphash-only cases), but still over-extends generic process injection/token techniques as \"strongly supporting\" evidence when they're actually common cheat-tool and malware techniques alike",
+    "true_family": "Vidar",
+    "predicted_family": "Ding Mod Menu",
+    "condition": "dynamic_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "26_fccf06172119_dynamic_evidence": {
+    "category": "signature_misattribution",
+    "note": "mining pool domain (pool.supportxmr.com) is a real, meaningfully specific indicator of Monero mining, but model treats \"primary function of XMRig\" as if it uniquely identifies XMRig specifically, when many CoinMiner variants use the same public mining pools - static/network indicator misread as family-specific signature",
+    "true_family": "CoinMiner",
+    "predicted_family": "XMRig",
+    "condition": "dynamic_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "27_e163ebf5bb0e_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "high entropy, crypto/decryption capability, and process injection are generic packer/loader traits labeled \"consistent with packed loader families like BazarLoader\" specifically, despite model's own admission that anti-detection signatures are common across many loaders",
+    "true_family": "NanoCore",
+    "predicted_family": "BazarLoader",
+    "condition": "dynamic_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "28_ed2a78cca645_dynamic_evidence": {
+    "category": "other",
+    "note": "edge case like item 11: model doesn't attribute to a specific named family, instead lands on generic \"Dropper\" label and explicitly states evidence is insufficient for specific attribution - hedged/appropriately uncertain rather than a false specific attribution",
+    "true_family": "WannaCry",
+    "predicted_family": "Generic Dropper",
+    "condition": "dynamic_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "29_e4210cc04fa6_dynamic_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "AES/GZip/reflection loading technique and scheduled-task persistence framed as \"heavily associated with QakBot\" and \"known QakBot operational patterns,\" despite model's own acknowledgment these are shared PowerShell-loader techniques that don't rule out other families",
+    "true_family": "njrat",
+    "predicted_family": "QakBot",
+    "condition": "dynamic_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "30_da590d16a873_combined_evidence": {
+    "category": "compound_narrative",
+    "note": ".NET runtime compilation + resource decryption + process injection + Defender exclusion changes + persistence techniques + single C2 domain \u2014 each individually generic, stacked together into confident BazarLoader attribution with \"characteristic of\" and \"matching known patterns\" language",
+    "true_family": "njrat",
+    "predicted_family": "BazarLoader",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "31_48975c5fd398_combined_evidence": {
+    "category": "n/a_grounded",
+    "note": ""
+  },
+  "32_c0522430955b_combined_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "service creation, security-service disabling, Defender exclusions, and .NET anti-analysis are generic evasion techniques labeled \"commonly observed in BazarLoader\" and \"aligns with known BazarLoader characteristics\" despite being widely shared across loader families",
+    "true_family": "CoinMiner",
+    "predicted_family": "BazarLoader",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "33_2e36529bd4cb_combined_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "rundll32 DLL execution (a technique, not unique to PlugX) plus generic persistence/crypto/anti-analysis behaviors labeled \"characteristic behaviors of the PlugX malware family\"",
+    "true_family": "WannaCry",
+    "predicted_family": "PlugX",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "34_a107ca6f200f_combined_evidence": {
+    "category": "other",
+    "note": "edge case: prediction is actually correct (marked_correct=True), still flagged PARTIAL under the strict grounding rule \u2014 file signature and installer behavior genuinely support this one, doesn't fit the misattribution/technique/compound failure categories since there's no false attribution here",
+    "true_family": "ConnectWise",
+    "predicted_family": "ScreenConnect (ConnectWise Control)",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-120b"
+  },
+  "35_386aece57515_combined_evidence": {
+    "category": "compound_narrative",
+    "note": "imphash match + generic persistence/injection behaviors + two C2 domains/IPs each individually weak or genuinely generic, stacked into confident Cobalt Strike attribution",
+    "true_family": "CoinMiner",
+    "predicted_family": "Cobalt Strike",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "36_ef88d67603ef_combined_evidence": {
+    "category": "compound_narrative",
+    "note": "signing certificate + Telegram C2 + generic registry/service/injection techniques combined into REvil attribution; cert claim (\"commonly used by REvil\") is itself a weak signature link, compounded with generic behaviors",
+    "true_family": "Vidar",
+    "predicted_family": "REvil (Sodinokibi)",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "37_7e743429ee5e_combined_evidence": {
+    "category": "signature_misattribution",
+    "note": "C2 domain (criptor.io) claimed as \"known Criptor C2\" \u2014 a real, specific static clue \u2014 but model treats generic crypto/persistence behaviors as confirming \"documented Criptor behavior\" beyond what the domain claim alone establishes",
+    "true_family": "NanoCore",
+    "predicted_family": "Criptor",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "38_48975c5fd398_combined_evidence": {
+    "category": "compound_narrative",
+    "note": "C2 domain claimed as \"well-known Lumin C2\" + generic scheduled-task/crypto behaviors \"matching typical Lumin behavior\" \u2014 same domain+technique stacking pattern as item 38",
+    "true_family": "NanoCore",
+    "predicted_family": "Lumin",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "39_ea21ddf3a08f_combined_evidence": {
+    "category": "signature_misattribution",
+    "note": "filename explicitly contains \"Ding-BootV2\" \u2014 a real, specific static clue \u2014 but model treats generic injection/registry/anti-detection MITRE techniques as confirming \"typical Ding-Boot capabilities\" beyond what filename alone establishes; model does appropriately hedge to low confidence",
+    "true_family": "Vidar",
+    "predicted_family": "Ding-Boot",
+    "condition": "combined_evidence",
+    "model": "openai/gpt-oss-20b"
+  },
+  "40_e4210cc04fa6_combined_evidence": {
+    "category": "other",
+    "note": "distinct failure type: raw reasoning trace / prompt template leaked into output, model exhaustively lists ~20 ransomware/loader family names via brute-force elimination without settling \u2014 not a clean misattribution, technique-fingerprint, or compound-narrative case; a parsing/generation malfunction worth flagging separately in the write-up as its own failure type",
+    "true_family": "njrat",
+    "predicted_family": "<name>",
+    "condition": "combined_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "41_155d1dce8e17_combined_evidence": {
+    "category": "generic_technique_fingerprint",
+    "note": "scheduled task naming pattern and generic .NET loader/persistence techniques (T1053, T1059.001, T1547) labeled \"strongly associated with Emotet\" and \"typical Emotet loader behavior\" despite being common loader techniques",
+    "true_family": "njrat",
+    "predicted_family": "Emotet",
+    "condition": "combined_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "42_33211c0e7a7b_combined_evidence": {
+    "category": "other",
+    "note": "appropriately hedged like items 11/29: model explicitly states techniques are \"highly generic and lack unique family-specific signatures,\" lands on generic category label rather than false specific attribution",
+    "true_family": "njrat",
+    "predicted_family": "Generic .NET Loader",
+    "condition": "combined_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "43_0ca617bad5b1_combined_evidence": {
+    "category": "other",
+    "note": "appropriately hedged: model notes absence of unique signatures, lands on generic \"InfoStealer\" category rather than naming a specific false family",
+    "true_family": "Vidar",
+    "predicted_family": "InfoStealer",
+    "condition": "combined_evidence",
+    "model": "qwen/qwen3.6-27b"
+  },
+  "44_ea21ddf3a08f_combined_evidence": {
+    "category": "signature_misattribution",
+    "note": "same pattern as item 40: filename explicitly states \"mod menu,\" model treats generic injection/token-theft techniques as confirming characteristic cheat-tool capability beyond what the filename alone establishes",
+    "true_family": "Vidar",
+    "predicted_family": "Ding-BootV2 (Game Cheat/Mod Menu)",
+    "condition": "combined_evidence",
+    "model": "qwen/qwen3.6-27b"
+  }
+}
