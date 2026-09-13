@@ -269,8 +269,8 @@ st.markdown("""
         <div class="stat-label">Justification grounding rate<br>(human-verified, p &lt; 0.001)</div>
     </div>
     <div class="stat-card">
-        <div class="stat-value">0 / 11</div>
-        <div class="stat-label">Misattributions independently supported<br>(OSINT-validated, 95% CI [0%, 25.9%])</div>
+        <div class="stat-value">11 / 11</div>
+        <div class="stat-label">Checkable misattributions unsupported or contradicted<br>(OSINT-validated, 95% CI [74.1%, 100%])</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
