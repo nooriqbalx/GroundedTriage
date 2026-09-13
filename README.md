@@ -81,7 +81,7 @@ GroundedTriage/
 │                              #   failure-mode taxonomy)
 ├── scripts/
 │   ├── pipeline/              # Dataset construction and evaluation pipeline
-│   ├── analysis/              # Extension analysis: power analysis, taxonomy coding, OSINT
+│   ├── analysis/              # Statistical analysis: power analysis, taxonomy
 │   │                          #   validation, statistical consolidation, figure generation
 │   └── debug/                 # Debugging utilities
 ├── k8s/                      # Kubernetes manifests (written, not yet deployed)
